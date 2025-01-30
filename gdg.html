@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Weight Converter</title>
+  <link rel="stylesheet" href="gdg.css">
+</head>
+<body>
+  <div class="container">
+    <h1>Weight Converter</h1>
+    <div class="converter">
+      <label for="weightInput">Enter Weight:</label>
+      <input type="number" id="weightInput" placeholder="Enter weight" />
+      <select id="unitSelector">
+        <option value="kg-to-lb">Kilograms to Pounds</option>
+        <option value="lb-to-kg">Pounds to Kilograms</option>
+      </select>
+      <button onclick="convertWeight()">Convert</button>
+      <p id="result"></p>
+    </div>
+  </div>
+
+  <script>
+    function convertWeight() {
+      const weightInput = document.getElementById('weightInput').value;
+      const unitSelector = document.getElementById('unitSelector').value;
+      const resultElement = document.getElementById('result');
+      const weight = parseFloat(weightInput);
+
+      if (isNaN(weight)) {
+        resultElement.textContent = "Please enter a valid number.";
+        return;
+      }
+
+      let result;
+      if (unitSelector === "kg-to-lb") {
+        result = weight * 2.20462; // Convert kg to pounds
+        resultElement.textContent = `${weight} kg = ${result.toFixed(2)} lb`;
+      } else if (unitSelector === "lb-to-kg") {
+        result = weight / 2.20462; // Convert pounds to kg
+        resultElement.textContent = `${weight} lb = ${result.toFixed(2)} kg`;
+      }
+    }
+  </script>
+</body>
+</html>
